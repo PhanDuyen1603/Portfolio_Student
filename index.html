@@ -490,5 +490,39 @@
     });
 </script>
 
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.querySelector('input[placeholder="Your Name"]').value;
+        const phone = document.querySelector('input[placeholder="Your Phone"]').value;
+        const email = document.querySelector('input[placeholder="Enter Email"]').value;
+        const message = document.querySelector('#comment').value;
+        const rating = document.getElementById('rating').value;
+
+        fetch("https://sheetdb.io/api/v1/7ikaf7qhamlex", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                data: {
+                    name, phone, email, message, rating
+                }
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("form-notification").innerText = "Your message was successfully submitted!";
+                document.getElementById("form-notification").style.display = "block";
+            })
+            .catch(error => {
+                document.getElementById("form-notification").innerText = "Submission failed: " + error;
+                document.getElementById("form-notification").style.display = "block";
+            });
+    });
+</script>
+
 </body>
 </html>
