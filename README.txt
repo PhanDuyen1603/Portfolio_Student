@@ -1,17 +1,8 @@
-Meyawo Free Bootstrap landing page for personal and commercial use. Designed with ♥️ and creativity by Devcrud.com 
+This is a personal portfolio project designed for high school students in Grades 11–12 at WASS (Western Australian School System).
+It includes all the essential sections commonly found in a student portfolio, along with a contact form that sends submitted data directly to a connected Google Sheet.
 
-Product Page: https://wwww.devcrud.com/
+The goal is to help the school system easily collect and manage student information, while keeping the project structure as simple and organized as possible.
 
-Credits:
+The entire project is built using only basic HTML, CSS, and JavaScript — no frameworks or advanced tools — so that students can read and understand the fundamental building blocks of a website with ease.
 
-    Demo Images:
-        Unsplash:       	(https://www.unsplash.com)
-
-    Icons:
-		Themify Icons: 		(https://themify.me/themify-icons)
-
-	Other:
-		jQuery: 			(https://www.jquery.com)
-		Bootstrap: 			(https://www.getbootstrap.com)
-		Bootstrap Affix: 	(http://getbootstrap.com/javascript/#affix)  
-
+Warm regards.
