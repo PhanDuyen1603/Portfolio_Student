@@ -65,7 +65,7 @@
             <span class="up">HI!</span>
             <span class="down">I am May</span>
         </h1>
-        <p class="header-subtitle">FRONTEND DEVELOPER</p>
+        <p class="header-subtitle">A HIGH SCHOOL STUDENT | WASS GRADE 11</p>
 
         <button class="btn btn-primary">Visit My Works</button>
     </div>
@@ -405,78 +405,91 @@
 <!-- footer -->
 <div class="container">
     <footer class="footer">
-        <p class="mb-0">Copyright
+        <p class="mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; <a href="http://www.devcrud.com">May</a></p>
+        <div class="social-links text-right m-auto ml-sm-auto">
+            <a href="javascript:void(0)" class="link"><i class="ti-facebook"></i></a>
+            <a href="javascript:void(0)" class="link"><i class="ti-google"></i></a>
+            <a href="javascript:void(0)" class="link"><i class="ti-pinterest-alt"></i></a>
+            <a href="javascript:void(0)" class="link"><i class="ti-instagram"></i></a>
+        </div>
+    </footer>
+</div> <!-- end of page footer -->
+
+<!-- core  -->
+<script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+<!-- bootstrap 3 affix -->
+<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+<!-- May js -->
+<script src="assets/js/may.js"></script>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll('#rating-stars .star');
+        const ratingInput = document.getElementById('rating');
+        let selectedRating = 0;
 
+        function updateStars(rating) {
+            stars.forEach((s, i) => {
+                s.classList.toggle('selected', i < rating);
+            });
+        }
 
+        stars.forEach((star, idx) => {
+            star.addEventListener('click', () => {
+                selectedRating = idx + 1;
+                ratingInput.value = selectedRating;
+                updateStars(selectedRating);
+            });
+            star.addEventListener('mouseover', () => updateStars(idx + 1));
+            star.addEventListener('mouseleave', () => updateStars(selectedRating));
+        });
 
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            const name = document.querySelector('input[placeholder="Your Name"]').value;
+            const phone = document.querySelector('input[placeholder="Your Phone"]').value;
+            const email = document.querySelector('input[placeholder="Enter Email"]').value;
+            const message = document.querySelector('#comment').value;
+            const rating = document.getElementById('rating').value;
 
+            const notif = document.getElementById("form-notification");
+            notif.style.display = "none";
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const stars = document.querySelectorAll('#rating-stars .star');
-                    const ratingInput = document.getElementById('rating');
-                    let selectedRating = 0;
-
-                    function updateStars(rating) {
-                        stars.forEach((s, i) => {
-                            s.classList.toggle('selected', i < rating);
-                        });
-                    }
-
-                    stars.forEach((star, idx) => {
-                        star.addEventListener('click', () => {
-                            selectedRating = idx + 1;
-                            ratingInput.value = selectedRating;
-                            updateStars(selectedRating);
-                        });
-                        star.addEventListener('mouseover', () => updateStars(idx + 1));
-                        star.addEventListener('mouseleave', () => updateStars(selectedRating));
-                    });
-
-                    document.getElementById('contact-form').addEventListener('submit', function(e) {
-                        e.preventDefault();
-
-                        const name = document.querySelector('input[placeholder="Your Name"]').value;
-                        const phone = document.querySelector('input[placeholder="Your Phone"]').value;
-                        const email = document.querySelector('input[placeholder="Enter Email"]').value;
-                        const message = document.querySelector('#comment').value;
-                        const rating = document.getElementById('rating').value;
-
-                        const notif = document.getElementById("form-notification");
-                        notif.style.display = "none";
-
-                        fetch("https://sheetdb.io/api/v1/7ikaf7qhamlex", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                data: { name, phone, email, message, rating }
-                            })
-                        })
-                            .then(response => {
-                                if (!response.ok) throw new Error("Network response was not ok");
-                                return response.json();
-                            })
-                            .then(data => {
-                                notif.innerText = "Your message was successfully submitted!";
-                                notif.style.display = "block";
-                                notif.style.color = "green";
-                                document.getElementById("contact-form").reset();
-                                document.getElementById("rating").value = 0;
-                                updateStars(0);
-                            })
-                            .catch(error => {
-                                notif.innerText = "Submission failed: " + error.message;
-                                notif.style.display = "block";
-                                notif.style.color = "red";
-                            });
-                    });
+            fetch("https://sheetdb.io/api/v1/7ikaf7qhamlex", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: { name, phone, email, message, rating }
+                })
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    return response.json();
+                })
+                .then(data => {
+                    notif.innerText = "Your message was successfully submitted!";
+                    notif.style.display = "block";
+                    notif.style.color = "green";
+                    document.getElementById("contact-form").reset();
+                    document.getElementById("rating").value = 0;
+                    updateStars(0);
+                })
+                .catch(error => {
+                    notif.innerText = "Submission failed: " + error.message;
+                    notif.style.display = "block";
+                    notif.style.color = "red";
                 });
-            </script>
-
+        });
+    });
+</script>
 </body>
 </html>
+
+

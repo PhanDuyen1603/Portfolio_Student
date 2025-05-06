@@ -1,18 +1,4 @@
-/*!
-=========================================================
-* Meyawo Landing page
-=========================================================
 
-* Copyright: 2019 DevCRUD (https://devcrud.com)
-* Licensed: (https://devcrud.com/licenses)
-* Coded by www.devcrud.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// smooth scroll
 $(document).ready(function () {
     $(".navbar .nav-link").on('click', function (event) {
 
@@ -37,11 +23,11 @@ $('#nav-toggle').click(function () {
     $('ul.nav').toggleClass('show');
 });
 
-    const stars = document.querySelectorAll('#rating-stars .star');
-    const ratingInput = document.getElementById('rating');
-    let selectedRating = 0;
+const stars = document.querySelectorAll('#rating-stars .star');
+const ratingInput = document.getElementById('rating');
+let selectedRating = 0;
 
-    function updateStars(rating) {
+function updateStars(rating) {
     stars.forEach((s, i) => {
         if (i < rating) {
             s.classList.add('selected');
@@ -51,7 +37,7 @@ $('#nav-toggle').click(function () {
     });
 }
 
-    stars.forEach((star, idx) => {
+stars.forEach((star, idx) => {
     star.addEventListener('click', () => {
         selectedRating = idx + 1;
         ratingInput.value = selectedRating;
@@ -59,10 +45,20 @@ $('#nav-toggle').click(function () {
     });
 
     star.addEventListener('mouseover', () => {
-    updateStars(idx + 1);
-});
+        updateStars(idx + 1);
+    });
 
     star.addEventListener('mouseleave', () => {
-    updateStars(selectedRating);
+        updateStars(selectedRating);
+    });
 });
+
+
+// Restore affix effect for navbar
+$(window).on("scroll", function () {
+    if ($(window).scrollTop() > 20) {
+        $(".custom-navbar").addClass("affix");
+    } else {
+        $(".custom-navbar").removeClass("affix");
+    }
 });
