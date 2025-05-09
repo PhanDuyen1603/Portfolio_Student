@@ -12241,3 +12241,10 @@ pre .code {
 #rating-stars .star.selected {
   color: #f1c40f;
 }
+
+.portfolio-card-img {
+  width: 100%;
+  height: 250px; /* hoặc 200px nếu bạn thấy quá cao */
+  object-fit: cover;
+  border-radius: 8px;
+}
